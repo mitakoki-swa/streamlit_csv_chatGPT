@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from dotenv import load_dotenv, find_dotenv
 from openai import OpenAI
 import os
+load_dotenv()
 
 def init_page():
     """ streamlitの初期化 """
