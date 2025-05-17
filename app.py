@@ -48,7 +48,7 @@ def request_chatgpt(df):
     if st.button('レポート生成'):
         prompt = f"""
         以下はデータ分析の結果です。統計的に意味のある特徴や気付きを日本語でレポートしてください
-        
+
         データ概要：
         {df.describe().to_string()}
         """
