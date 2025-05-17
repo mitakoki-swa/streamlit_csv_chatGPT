@@ -14,36 +14,38 @@ def init_page():
         )
     st.title("CSV要約アプリ")
 
-# ファイルアップロード
+
 def upload_file():
+    """ ファイルアップロード """
     try:
         uploaded_file = st.file_uploader('csvファイルをアップロードしてください', type='csv')
     except Exception:
         st.error('ファイル読み込みに失敗しました。正しいCSVファイルを指定してください。')
     return uploaded_file
 
-# ファイル読み込み、出力
+
 def load_file(uploaded_file):
-    if uploaded_file is not None:
-        df = pd.read_csv(uploaded_file)
-        st.subheader('データプレビュー')
-        st.dataframe(df.head())
+    """ ファイル読み込み、出力 """
+    df = pd.read_csv(uploaded_file)
+    st.subheader('データプレビュー')
+    st.dataframe(df.head())
 
-        # 基本統計量
-        st.subheader('基本統計情報')
-        st.write(df.describe())
+    # 基本統計量
+    st.subheader('基本統計情報')
+    st.write(df.describe())
 
-        # グラフ化
-        st.subheader('ヒストグラム')
-        numeric_cols = df.select_dtypes(include='number').columns
-        selected_col = st.selectbox('数値列を選んでください。', numeric_cols)
-        fig, ax = plt.subplots()
-        df[selected_col].hist(ax=ax, bins='auto')
-        st.pyplot(fig)
-        return df
+    # グラフ化
+    st.subheader('ヒストグラム')
+    numeric_cols = df.select_dtypes(include='number').columns
+    selected_col = st.selectbox('数値列を選んでください。', numeric_cols)
+    fig, ax = plt.subplots()
+    df[selected_col].hist(ax=ax, bins='auto')
+    st.pyplot(fig)
+    return df
 
-# ChatGPTに要約を依頼
+
 def request_chatgpt(df):
+    """ ChatGPTに要約を依頼 """
     st.subheader('ChatGPTによるレポート生成')
     if st.button('レポート生成'):
         prompt = f"""
@@ -68,14 +70,13 @@ def request_chatgpt(df):
 
             return report
 
-# メイン関数
+
 def main():
-    """ここに基本処理を書く"""
     uploaded_file = upload_file()
+    if uploaded_file:
+        df = load_file(uploaded_file)
+        request_chatgpt(df)
 
-    df = load_file(uploaded_file)
-
-    request_chatgpt(df)
 
 if __name__ == "__main__":
     init_page()
