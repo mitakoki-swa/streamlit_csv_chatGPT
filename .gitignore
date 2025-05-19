@@ -7,6 +7,7 @@ __pycache__/
 
 # 環境変数ファイル（機密情報）
 notebook/02_streamlit/.env
+.env
 
 # 不要アプリ
 notebook/02_streamlit/app_streamlit.py
