@@ -8,7 +8,7 @@
 
 ## 使い方
 * 通常
-  - ターミナルにおいて`streamlit run (カレントディレクトリからの相対パス)/csv_chatGPT.py`でアプリ起動
+  - ターミナルにおいて`streamlit run app.py`でアプリ起動
   - 任意のCSV投入で自動分析
 * chatGPTが動かなかった場合
   - 02_streamlit内に「.env」ファイル作成
