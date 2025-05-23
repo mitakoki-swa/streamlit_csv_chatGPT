@@ -69,7 +69,7 @@ def request_chatgpt(df):
             )
             report = response.choices[0].message.content
 
-            return report
+            st.write(report)
 
 
 def main():
