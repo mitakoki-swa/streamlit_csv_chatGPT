@@ -21,7 +21,7 @@ notebook/01_googlecolab
 Thumbs.db
 
 # 仮想環境の作り方書いたREADME
-/README.md
+notebook/02_streamlit/README.md
 
 # メモ削除
 notebook/99_text
